@@ -8,7 +8,6 @@ fig, ax = plt.subplots(figsize=(6, 6))
 scale = 20
 Index2Color = {0:'#FFFFFF',1:'#009C08',2:'#ED1C24',3:'#000084',4:'#B5A518',5:'#18C6F7',6:'#C618C6',7:'#943100'}
 
-
 def plotLine(start, end, shape, text=None):
         arrow_args = dict(arrowstyle=shape)
         ax.annotate("", xy=start, xycoords='axes fraction',
