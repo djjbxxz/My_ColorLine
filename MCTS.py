@@ -1,4 +1,4 @@
-from visualization.test import visualization
+from visualization import visualization
 from inference import get_move_index, load_model
 from PathfindingDll import loadDLL
 from GameControlerDLL import load_game_dll
@@ -107,7 +107,7 @@ def evaluate(game_map, next_three,use_NN):
         policy = model(inputs, training=False)
         policy = np.array(tf.reshape(tf.cast(policy, np.float32), [6561]))
     else:
-        policy = np.ones(shape = (1,6561),dtype=np.float32)
+        policy = np.ones(shape = (6561),dtype=np.float32)
     estimate(policy, game_map)
 
     return policy
@@ -124,9 +124,19 @@ if __name__ == '__main__':
     import time
     from Game import get_random_start
     game_map, comingcolor = get_random_start()
+    # game_map = np.array([[1, 1, 2, 2, 4, 5, 6, 7, 3],
+    #                      [1, 2, 1, 2, 6, 6, 7, 5, 4],
+    #                      [1, 3, 3, 2, 3, 3, 2, 3, 3],
+    #                      [1, 1, 2, 2, 1, 1, 6, 6, 3],
+    #                      [0, 0, 5, 0, 4, 4, 3, 3, 1],
+    #                      [1, 1, 2, 0, 3, 5, 5, 6, 6],
+    #                      [7, 1, 4, 0, 3, 3, 4, 4, 3],
+    #                      [3, 1, 2, 0, 1, 5, 5, 6, 6],
+    #                      [7, 0, 1, 0, 0, 0, 0, 2, 3]])
+
     game_map = np.array([[1, 1, 2, 2, 4, 5, 6, 7, 3],
                          [1, 2, 1, 2, 6, 6, 7, 5, 4],
-                         [1, 3, 3, 2, 3, 3, 2, 3, 3],
+                         [2, 3, 3, 5, 3, 3, 2, 3, 3],
                          [1, 1, 2, 2, 1, 1, 6, 6, 3],
                          [0, 0, 5, 0, 4, 4, 3, 3, 1],
                          [1, 1, 2, 0, 3, 5, 5, 6, 6],
@@ -136,7 +146,7 @@ if __name__ == '__main__':
     node = Node(game_map, None, None, None, True,
                 comingcolor, 0)  # start of game
     start = node
-    iteration = 50
+    iteration = 40
     time_start = time.time()
     for j in range(1):
         for i in range(iteration):
