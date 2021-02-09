@@ -1,9 +1,9 @@
 import numpy as np
 import numpy.ctypeslib as npct
 
-def load_game_dll():
+def load_GameControlerDLL():
     lib = npct.load_library("GameControlerDLL",
-                            r"C:\Users\djjbx\source\repos\GameControler\x64\Release")
+                            r"DLL")
     lib.judge.argtypes = [npct.ndpointer(dtype=np.int, ndim=2, flags="C_CONTIGUOUS", shape=(9, 9)),
                              npct.ndpointer(dtype=np.int, ndim=1, flags="C_CONTIGUOUS"),
                              npct.ndpointer(dtype=np.int, ndim=2, flags="C_CONTIGUOUS",shape=(2, 2))]
@@ -19,6 +19,6 @@ if __name__== '__main__':
     for i in range(4):
         arr_3[0][i] = 1
     arr_3[8][8] = 1
-    judge = load_game_dll()
+    judge = load_GameControlerDLL()
     print(judge(arr_3,arr_1,arr_2))
     print(arr_3)

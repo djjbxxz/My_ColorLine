@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import numpy.ctypeslib as npct
-from PathfindingDll import loadDLL
+from PathfindingDll import load_PathfindingDLL
 
 
 def load_model(model_name):
@@ -32,11 +32,15 @@ def tenToAny(n, origin):
    l.reverse()
    return l
     
-def get_move_index(move):
+def get_move_to_index(move):
    index = tenToAny(9,move)
    
    a = list(np.zeros(shape=(4-len(index),),dtype=int))+index
    return np.reshape(a,[2,2])
+
+def get_move_from_index(move):
+   return np.matmul(np.array(move).flatten(),[9*9*9,9*9,9,1])
+
 
 def evaluate(game_map,next_three,get_max_p_move=False):
    inputs = np.ndarray(shape=(9,9,4))

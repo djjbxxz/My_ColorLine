@@ -4,10 +4,10 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow_core.python.keras.api._v2.keras import layers
 from inference import load_model,inference
-from PathfindingDll import loadDLL
+from PathfindingDll import load_PathfindingDLL
 import MCTS
 
-estimate = loadDLL()
+estimate = load_PathfindingDLL()
 model = load_model()
 
 model.fit(test_input, test_target)

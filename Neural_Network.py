@@ -3,6 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow_core.python.keras.api._v2.keras import layers
+import numpy as np
 
 
 def Preprocess(x):
@@ -42,7 +43,7 @@ import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
 # Model visualization
-inputs = keras.Input(shape=(9,9,4))
+inputs = keras.Input(shape=(9,9,4),dtype = np.uint8)
 out= Preprocess(inputs)
 for i in range(1): #9
     out = ResidualBlock(out)
